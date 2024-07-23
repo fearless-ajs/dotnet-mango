@@ -1,0 +1,26 @@
+﻿services:
+#  mango:
+#    image: mango
+#    build:
+#      context: .
+#      dockerfile: Mango/Dockerfile
+#
+#  mango.services.couponapi:
+#    image: mango.services.couponapi
+#    build:
+#      context: .
+#      dockerfile: Services/Mango.Services.CouponAPI/Dockerfile
+  
+  mssql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=!Passcode2024
+    volumes:
+      - mango_mssql_data:/var/opt/mssql
+    ports:
+      - "1433:1433"
+      
+volumes:
+  mango_mssql_data:
+    driver: local
